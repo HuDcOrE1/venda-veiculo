@@ -1,6 +1,6 @@
 O projeto consiste no Cadastro de Cliente, Veículos e faz a venda vinculando
 um cliente e um veículo.
-
+Já tem um cliente, um Veículo e uma venda cadastrados no banco de dados.
 
 TO-DO
 	Fazer o PUT, PATCH, DELETE
