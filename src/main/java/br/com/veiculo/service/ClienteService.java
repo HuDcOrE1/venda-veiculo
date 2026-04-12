@@ -62,4 +62,11 @@ public class ClienteService {
         }
         repo.deleteById(id);
     }
+
+    public ClienteDTO buscarPorId(Long id) {
+        Cliente cliente = repo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+
+        return toDTO(cliente);
+    }
 }

@@ -40,6 +40,11 @@ public class CompraController {
         return service.atualizarParcial(id, dto);
     }
 
+    @GetMapping("/{id}")
+    public CompraDTO buscarPorId(@PathVariable Long id) {
+        return service.buscarPorId(id);
+    }
+
     @DeleteMapping("/{id}")
     public void deletar(@PathVariable Long id) {
         service.deletarCompra(id);

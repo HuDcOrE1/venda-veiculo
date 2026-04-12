@@ -102,4 +102,12 @@ public class CompraService {
                 )
         );
     }
+
+
+    public CompraDTO buscarPorId(Long id) {
+        Compra compra = compraRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Compra não encontrado"));
+
+        return toDTO(compra);
+    }
 }

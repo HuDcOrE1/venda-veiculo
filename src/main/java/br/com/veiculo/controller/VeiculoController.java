@@ -35,6 +35,11 @@ public class VeiculoController {
         return service.atualizarParcial(id, dto);
     }
 
+    @GetMapping("/{id}")
+    public VeiculoDTO buscarPorId(@PathVariable Long id) {
+        return service.buscarPorId(id);
+    }
+
     @DeleteMapping("/{id}")
     public void deletar(@PathVariable Long id) {
         service.deletar(id);

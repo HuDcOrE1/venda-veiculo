@@ -41,6 +41,13 @@ public class VeiculoService {
                 .toList();
     }
 
+    public VeiculoDTO buscarPorId(Long id) {
+        Veiculo veiculo = repo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Veiculo não encontrado"));
+
+        return toDTO(veiculo);
+    }
+
     public VeiculoDTO atualizar(Long id, VeiculoRequestDTO dto) {
         Veiculo v = repo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Veículo não encontrado"));
