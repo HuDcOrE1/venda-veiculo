@@ -8,7 +8,8 @@ import br.com.veiculo.dto.VeiculoDTO;
 import br.com.veiculo.dto.CompraRequestDTO;
 import br.com.veiculo.entity.*;
 import java.time.*;
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @Service
 @RequiredArgsConstructor
@@ -36,11 +37,9 @@ public class CompraService {
         return toDTO(compra);
     }
 
-    public List<CompraDTO> listarCompras() {
-        return compraRepository.findAll()
-                .stream()
-                .map(this::toDTO)
-                .toList();
+    public Page<CompraDTO> listar(Pageable pageable) {
+        return compraRepository.findAll(pageable)
+                .map(this::toDTO);
     }
 
     public CompraDTO atualizarCompra(Long id, CompraRequestDTO dto) {

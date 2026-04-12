@@ -1,6 +1,8 @@
 package br.com.veiculo.controller;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import br.com.veiculo.dto.CompraDTO;
@@ -22,8 +24,8 @@ public class CompraController {
     }
 
     @GetMapping
-    public List<CompraDTO> listarCompras() {
-        return service.listarCompras();
+    public Page<CompraDTO> listarCompras(Pageable pageable) {
+        return service.listar(pageable);
     }
 
     @PutMapping("/{id}")

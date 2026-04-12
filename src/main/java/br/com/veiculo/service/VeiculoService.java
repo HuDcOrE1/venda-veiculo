@@ -6,8 +6,8 @@ import br.com.veiculo.entity.Veiculo;
 import br.com.veiculo.repository.VeiculoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @Service
 @RequiredArgsConstructor
@@ -34,11 +34,9 @@ public class VeiculoService {
         return toDTO(repo.save(v));
     }
 
-    public List<VeiculoDTO> listar() {
-        return repo.findAll()
-                .stream()
-                .map(this::toDTO)
-                .toList();
+    public Page<VeiculoDTO> listar(Pageable pageable) {
+        return repo.findAll(pageable)
+                .map(this::toDTO);
     }
 
     public VeiculoDTO buscarPorId(Long id) {

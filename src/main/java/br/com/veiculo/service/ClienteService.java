@@ -6,6 +6,9 @@ import br.com.veiculo.entity.Cliente;
 import br.com.veiculo.repository.ClienteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,11 +32,9 @@ public class ClienteService {
         return toDTO(repo.save(cliente));
     }
 
-    public List<ClienteDTO> listar() {
-        return repo.findAll()
-                .stream()
-                .map(this::toDTO)
-                .collect(Collectors.toList());
+    public Page<ClienteDTO> listar(Pageable pageable) {
+        return repo.findAll(pageable)
+                .map(this::toDTO);
     }
 
     public ClienteDTO atualizar(Long id, ClienteRequestDTO dto) {

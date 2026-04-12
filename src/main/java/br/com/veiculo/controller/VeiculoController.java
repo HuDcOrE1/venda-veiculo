@@ -5,8 +5,8 @@ import br.com.veiculo.dto.VeiculoRequestDTO;
 import br.com.veiculo.service.VeiculoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @RestController
 @RequestMapping("/veiculos")
@@ -21,8 +21,8 @@ public class VeiculoController {
     }
 
     @GetMapping
-    public List<VeiculoDTO> listar() {
-        return service.listar();
+    public Page<VeiculoDTO> listar(Pageable pageable) {
+        return service.listar(pageable);
     }
 
     @PutMapping("/{id}")

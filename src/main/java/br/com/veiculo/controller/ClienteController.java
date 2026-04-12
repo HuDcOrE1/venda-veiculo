@@ -3,6 +3,8 @@ package br.com.veiculo.controller;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import br.com.veiculo.dto.ClienteDTO;
 import br.com.veiculo.dto.ClienteRequestDTO;
@@ -22,8 +24,8 @@ public class ClienteController {
     }
 
     @GetMapping
-    public List<ClienteDTO> listar(){
-        return service.listar();
+    public Page<ClienteDTO> listar(Pageable pageable) {
+        return service.listar(pageable);
     }
 
     @GetMapping("/{id}")
