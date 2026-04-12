@@ -1,0 +1,20 @@
+# Maven
+/target/
+
+# IDEs
+/.idea/
+/.vscode/*.log
+*.iml
+
+# Logs
+*.log
+
+
+#Vou deixar o banco para compartilharmos os dados
+# H2 database
+#/data/
+#/*.db
+
+# OS
+.DS_Store
+Thumbs.db

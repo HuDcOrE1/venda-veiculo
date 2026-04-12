@@ -1,0 +1,1 @@
+<?xml version="1.0"?><Configuration status="INFO"><Appenders><Console name="Console"><PatternLayout pattern="%d %-5p %c - %m%n"/></Console></Appenders><Loggers><Root level="INFO"><AppenderRef ref="Console"/></Root></Loggers></Configuration>
