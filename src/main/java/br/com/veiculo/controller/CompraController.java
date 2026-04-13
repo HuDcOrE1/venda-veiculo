@@ -1,36 +1,54 @@
 package br.com.veiculo.controller;
 import java.util.List;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.*;
 
 import br.com.veiculo.dto.CompraDTO;
-import br.com.veiculo.entity.Compra;
 import br.com.veiculo.service.CompraService;
+import br.com.veiculo.dto.CompraRequestDTO;
 import lombok.RequiredArgsConstructor;
 
 
-@RestController 
-@RequestMapping("/compras") 
+@RestController
+@RequestMapping("/compras")
 @RequiredArgsConstructor
-public class CompraController{ 
+public class CompraController {
 
-    private final CompraService s; 
+    private final CompraService service;
 
-    @PostMapping 
-    public Compra comprar(
-        @RequestParam Long clienteId,
-        @RequestParam Long veiculoId){
-            return s.realizarCompra(clienteId,veiculoId);
+    @PostMapping
+    public CompraDTO comprar(@RequestBody CompraRequestDTO dto) {
+        return service.realizarCompra(dto);
     }
 
-    
     @GetMapping
-    public List<CompraDTO> listarCompras() {
-        return s.listarCompras();
+    public Page<CompraDTO> listarCompras(Pageable pageable) {
+        return service.listar(pageable);
     }
 
+    @PutMapping("/{id}")
+    public CompraDTO atualizar(
+            @PathVariable Long id,
+            @RequestBody CompraRequestDTO dto) {
+        return service.atualizarCompra(id, dto);
+    }
+
+    @PatchMapping("/{id}")
+    public CompraDTO atualizarParcial(
+            @PathVariable Long id,
+            @RequestBody CompraRequestDTO dto) {
+        return service.atualizarParcial(id, dto);
+    }
+
+    @GetMapping("/{id}")
+    public CompraDTO buscarPorId(@PathVariable Long id) {
+        return service.buscarPorId(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletar(@PathVariable Long id) {
+        service.deletarCompra(id);
+    }
 }
