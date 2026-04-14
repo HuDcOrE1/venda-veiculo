@@ -1,6 +1,9 @@
 package br.com.veiculo.controller;
 import java.util.List;
 
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
@@ -24,10 +27,12 @@ public class CompraController {
     }
 
     @GetMapping
+    @Cacheable("compras")
     public Page<CompraDTO> listarCompras(Pageable pageable) {
         return service.listar(pageable);
     }
 
+    @CachePut(value = "compra", key = "#id")
     @PutMapping("/{id}")
     public CompraDTO atualizar(
             @PathVariable Long id,
@@ -35,6 +40,7 @@ public class CompraController {
         return service.atualizarCompra(id, dto);
     }
 
+    @CachePut(value = "compra", key = "#id")
     @PatchMapping("/{id}")
     public CompraDTO atualizarParcial(
             @PathVariable Long id,
@@ -43,12 +49,18 @@ public class CompraController {
     }
 
     @GetMapping("/{id}")
+    @Cacheable(value = "compra", key = "#id")
     public CompraDTO buscarPorId(@PathVariable Long id) {
         return service.buscarPorId(id);
     }
 
     @DeleteMapping("/{id}")
+    @CacheEvict(value = {"compra", "compras"}, allEntries = true)
     public void deletar(@PathVariable Long id) {
         service.deletarCompra(id);
     }
+
+    @GetMapping("/limpar-cache")
+    @CacheEvict(value = {"compra", "compras"}, allEntries = true)
+    public void limparCache() {}
 }
