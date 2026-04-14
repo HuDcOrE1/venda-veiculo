@@ -1,6 +1,7 @@
 package br.com.veiculo.controller;
 import java.util.List;
 
+import jakarta.validation.Valid;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -22,7 +23,7 @@ public class CompraController {
     private final CompraService service;
 
     @PostMapping
-    public CompraDTO comprar(@RequestBody CompraRequestDTO dto) {
+    public CompraDTO comprar(@Valid @RequestBody CompraRequestDTO dto) {
         return service.realizarCompra(dto);
     }
 
