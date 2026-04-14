@@ -13,6 +13,8 @@ public class Veiculo{
     @GeneratedValue(strategy=GenerationType.IDENTITY) 
     private Long id; 
     private String marca; 
-    private String modelo; 
+    private String modelo;
+    private int anoModelo;
     private Double valor;
+    private String codigoFipe;
 }
