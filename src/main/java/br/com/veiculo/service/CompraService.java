@@ -1,4 +1,5 @@
 package br.com.veiculo.service;
+import br.com.veiculo.exception.CarroVendidoException;
 import lombok.*;
 import org.springframework.stereotype.*;
 import br.com.veiculo.repository.*;
@@ -25,6 +26,8 @@ public class CompraService {
 
         Veiculo v = veiculoRepository.findById(dto.getVeiculoId())
                 .orElseThrow(() -> new RuntimeException("Veículo não encontrado"));
+
+        if(compraRepository.existsByClienteAndVeiculo(c, v)) throw new CarroVendidoException("O carro já foi vendido.");
 
         Compra compra = compraRepository.save(
                 Compra.builder()
