@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -51,5 +52,12 @@ public class VeiculoController {
     @CacheEvict(value = {"veiculos", "veiculo"}, allEntries = true)
     public void deletar(@PathVariable Long id) {
         service.deletar(id);
+    }
+
+    @PostMapping("/import-fipe")
+    public ResponseEntity<String> importarDadosFipeApi() {
+        service.importarDadosFipeApi();
+
+        return ResponseEntity.ok("Importação realizada com sucesso!");
     }
 }
