@@ -24,6 +24,10 @@ public class ClienteService {
     }
 
     public ClienteDTO salvar(ClienteRequestDTO dto) {
+        if (repo.existsByCpf(dto.getCpf())) {
+            throw new RuntimeException("CPF já cadastrado");
+        }
+
         Cliente cliente = Cliente.builder()
                 .nome(dto.getNome())
                 .cpf(dto.getCpf())
@@ -41,6 +45,10 @@ public class ClienteService {
         Cliente cliente = repo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
 
+        if (repo.existsByCpfAndIdNot(dto.getCpf(), id)) {
+            throw new RuntimeException("CPF já cadastrado");
+        }
+
         cliente.setNome(dto.getNome());
         cliente.setCpf(dto.getCpf());
 
@@ -50,6 +58,10 @@ public class ClienteService {
     public ClienteDTO atualizarParcial(Long id, ClienteRequestDTO dto) {
         Cliente cliente = repo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+
+        if (dto.getCpf() != null && repo.existsByCpfAndIdNot(dto.getCpf(), id)) {
+            throw new RuntimeException("CPF já cadastrado");
+        }
 
         if (dto.getNome() != null) cliente.setNome(dto.getNome());
         if (dto.getCpf() != null) cliente.setCpf(dto.getCpf());

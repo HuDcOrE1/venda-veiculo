@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import jakarta.validation.Valid;
+
 import br.com.veiculo.dto.ClienteDTO;
 import br.com.veiculo.dto.ClienteRequestDTO;
 import br.com.veiculo.service.ClienteService;
@@ -22,7 +24,7 @@ public class ClienteController {
     private final ClienteService service;
 
     @PostMapping
-    public ClienteDTO salvar(@RequestBody ClienteRequestDTO dto){
+    public ClienteDTO salvar(@Valid @RequestBody ClienteRequestDTO dto){
         return service.salvar(dto);
     }
 
@@ -40,7 +42,7 @@ public class ClienteController {
 
     @CachePut(value = "cliente", key = "#id")
     @PutMapping("/{id}")
-    public ClienteDTO atualizar(@PathVariable Long id, @RequestBody ClienteRequestDTO dto) {
+    public ClienteDTO atualizar(@PathVariable Long id, @Valid @RequestBody ClienteRequestDTO dto) {
         return service.atualizar(id, dto);
     }
 
