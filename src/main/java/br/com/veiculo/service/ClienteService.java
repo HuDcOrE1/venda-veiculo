@@ -2,6 +2,7 @@ package br.com.veiculo.service;
 
 import br.com.veiculo.dto.ClienteDTO;
 import br.com.veiculo.dto.ClienteRequestDTO;
+import br.com.veiculo.dto.ClientePatchRequestDTO;
 import br.com.veiculo.entity.Cliente;
 import br.com.veiculo.repository.ClienteRepository;
 import lombok.RequiredArgsConstructor;
@@ -55,7 +56,7 @@ public class ClienteService {
         return toDTO(repo.save(cliente));
     }
 
-    public ClienteDTO atualizarParcial(Long id, ClienteRequestDTO dto) {
+    public ClienteDTO atualizarParcial(Long id, ClientePatchRequestDTO dto) {
         Cliente cliente = repo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
 

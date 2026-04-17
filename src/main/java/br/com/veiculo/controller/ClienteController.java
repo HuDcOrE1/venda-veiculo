@@ -13,6 +13,7 @@ import jakarta.validation.Valid;
 
 import br.com.veiculo.dto.ClienteDTO;
 import br.com.veiculo.dto.ClienteRequestDTO;
+import br.com.veiculo.dto.ClientePatchRequestDTO;
 import br.com.veiculo.service.ClienteService;
 import lombok.RequiredArgsConstructor;
 
@@ -48,7 +49,7 @@ public class ClienteController {
 
     @PatchMapping("/{id}")
     @CachePut(value = "cliente", key = "#id")
-    public ClienteDTO atualizarParcial(@PathVariable Long id, @RequestBody ClienteRequestDTO dto) {
+    public ClienteDTO atualizarParcial(@PathVariable Long id, @Valid @RequestBody ClientePatchRequestDTO dto) {
         return service.atualizarParcial(id, dto);
     }
 
