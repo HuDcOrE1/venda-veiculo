@@ -55,6 +55,7 @@ public class VeiculoController {
     }
 
     @PostMapping("/import-fipe")
+    @Cacheable("import_fipe")
     public ResponseEntity<String> importarDadosFipeApi() {
         service.importarDadosFipeApi();
 

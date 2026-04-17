@@ -36,14 +36,15 @@ API REST para cadastro de clientes, veículos e registro de compras.
 | DELETE | `/clientes/{id}` | Deletar |
 
 ### Veículos `/veiculos`
-| Método | Rota | Descrição |
-|--------|------|-----------|
-| POST | `/veiculos` | Cadastrar veículo |
-| GET | `/veiculos` | Listar (paginado) |
-| GET | `/veiculos/{id}` | Buscar por ID |
-| PUT | `/veiculos/{id}` | Atualizar completo |
-| PATCH | `/veiculos/{id}` | Atualizar parcial |
-| DELETE | `/veiculos/{id}` | Deletar |
+| Método | Rota           | Descrição          |
+|--------|----------------|--------------------|
+| POST   | `/veiculos`    | Cadastrar veículo  |
+| GET    | `/veiculos`    | Listar (paginado)  |
+| GET    | `/veiculos/{id}` | Buscar por ID      |
+| PUT    | `/veiculos/{id}` | Atualizar completo |
+| PATCH  | `/veiculos/{id}` | Atualizar parcial  |
+| DELETE | `/veiculos/{id}` | Deletar            |
+| POST    | `/import-fipe` | Importar Veiculos  |
 
 ### Compras `/compras`
 | Método | Rota | Descrição |
@@ -76,8 +77,3 @@ API REST para cadastro de clientes, veículos e registro de compras.
 ```json
 { "clienteId": 1, "veiculoId": 1 }
 ```
-
-## TO-DO
-
-- Validação de CPF (formato, somente números, unicidade)
-- Integração com API da FIPE para preço do veículo
