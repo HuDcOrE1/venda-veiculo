@@ -3,6 +3,7 @@ package br.com.veiculo.controller;
 import br.com.veiculo.dto.VeiculoDTO;
 import br.com.veiculo.dto.VeiculoRequestDTO;
 import br.com.veiculo.service.VeiculoService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -20,7 +21,7 @@ public class VeiculoController {
     private final VeiculoService service;
 
     @PostMapping
-    public VeiculoDTO salvar(@RequestBody VeiculoRequestDTO dto) {
+    public VeiculoDTO salvar(@Valid @RequestBody VeiculoRequestDTO dto) {
         return service.salvar(dto);
     }
 
