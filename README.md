@@ -70,7 +70,7 @@ API REST para cadastro de clientes, veículos e registro de compras.
 
 **Veículo:**
 ```json
-{ "marca": "Toyota", "modelo": "Corolla", "valor": 120000.00 }
+{ "id": 33, "marca": "Acura", "modelo": "Integra GS 1.8", "valor": 10853, "anoModelo": 1992, "codigoFipe": "038003-2" }
 ```
 
 **Compra:**
