@@ -10,4 +10,6 @@ public class VeiculoDTO {
     private String marca;
     private String modelo;
     private Double valor;
+    private int anoModelo;
+    private String codigoFipe;
 }

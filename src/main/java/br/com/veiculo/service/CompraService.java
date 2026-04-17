@@ -100,7 +100,9 @@ public class CompraService {
                         compra.getVeiculo().getId(),
                         compra.getVeiculo().getMarca(),
                         compra.getVeiculo().getModelo(),
-                        compra.getVeiculo().getValor()
+                        compra.getVeiculo().getValor(),
+                        compra.getVeiculo().getAnoModelo(),
+                        compra.getVeiculo().getCodigoFipe()
                 )
         );
     }
