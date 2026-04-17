@@ -25,7 +25,9 @@ public class VeiculoService {
                 v.getId(),
                 v.getMarca(),
                 v.getModelo(),
-                v.getValor()
+                v.getValor(),
+                v.getAnoModelo(),
+                v.getCodigoFipe()
         );
     }
 
@@ -58,6 +60,8 @@ public class VeiculoService {
         v.setMarca(dto.getMarca());
         v.setModelo(dto.getModelo());
         v.setValor(dto.getValor());
+        v.setAnoModelo(dto.getAnoModelo());
+        v.setCodigoFipe(dto.getCodigoFipe());
 
         return toDTO(repo.save(v));
     }
@@ -69,6 +73,8 @@ public class VeiculoService {
         if (dto.getMarca() != null) v.setMarca(dto.getMarca());
         if (dto.getModelo() != null) v.setModelo(dto.getModelo());
         if (dto.getValor() != null) v.setValor(dto.getValor());
+        if (dto.getAnoModelo() != 0) v.setAnoModelo(dto.getAnoModelo());
+        if (dto.getCodigoFipe() != null) v.setCodigoFipe(dto.getCodigoFipe());
 
         return toDTO(repo.save(v));
     }
